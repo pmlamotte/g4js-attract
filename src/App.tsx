@@ -44,10 +44,10 @@ const STANDARDS = [
 function SignatureCounter({ value }: { value: number }) {
   return (
     <div className="flex flex-col items-center md:items-end">
-      <div className="text-[clamp(4rem,14vh,9rem)] font-display font-black text-awu-red tracking-tighter tabular-nums leading-[0.9]">
+      <div className="font-display font-black text-awu-red tracking-tighter tabular-nums leading-[0.9]" style={{ fontSize: 'clamp(3rem, 12dvh, 9rem)' }}>
         {value.toLocaleString()}
       </div>
-      <div className="text-[clamp(1.1rem,3.5vh,2rem)] font-display font-black uppercase tracking-tight text-gray-900 mt-1">
+      <div className="font-display font-black uppercase tracking-tight text-gray-900 mt-1" style={{ fontSize: 'clamp(0.9rem, 3dvh, 2rem)' }}>
         Googlers Have Signed
       </div>
     </div>
@@ -99,7 +99,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen bg-gray-50 font-sans text-[#222] flex flex-col antialiased overflow-hidden relative">
+    <div className="bg-gray-50 font-sans text-[#222] flex flex-col antialiased overflow-hidden relative" style={{ height: '100dvh' }}>
       {/* Fullscreen Toggle Button */}
       <motion.button
         initial={{ opacity: 1 }}
@@ -112,11 +112,11 @@ export default function App() {
         {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
       </motion.button>
 
-      <main className="flex-grow max-w-7xl mx-auto px-6 md:px-12 py-8 flex flex-col justify-center">
+      <main className="flex-grow max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-center" style={{ paddingTop: '2dvh', paddingBottom: '2dvh' }}>
         {/* Enhanced Counter Section */}
-        <div className="mb-8 flex flex-col md:flex-row justify-between items-center md:items-end border-b border-gray-200 pb-6">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end border-b border-gray-200" style={{ marginBottom: '2dvh', paddingBottom: '1.5dvh' }}>
           <div className="mb-4 md:mb-0 text-center md:text-left">
-            <h1 className="font-display font-black italic text-gray-900 uppercase tracking-normal text-[clamp(2.1rem,6.8vh,4.8rem)] leading-[1.1]">
+            <h1 className="font-display font-black italic text-gray-900 uppercase tracking-normal leading-[1.1]" style={{ fontSize: 'clamp(1.8rem, 6dvh, 4.8rem)' }}>
               Googlers For <br />
               Job Security
             </h1>
@@ -125,14 +125,15 @@ export default function App() {
         </div>
 
         {/* The Asks Section - Compact 2x2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '1.5dvh' }}>
           {STANDARDS.map((std) => (
             <div 
               key={std.id}
-              className="bg-white border-2 border-gray-200 p-6 shadow-sm flex flex-col justify-between"
+              className="bg-white border-2 border-gray-200 shadow-sm flex flex-col justify-between"
+              style={{ padding: 'clamp(0.75rem, 2dvh, 1.5rem)' }}
             >
-              <div className="mb-6">
-                <h3 className="font-display font-black text-2xl text-gray-900 mb-1 uppercase tracking-normal">
+              <div style={{ marginBottom: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
+                <h3 className="font-display font-black text-gray-900 uppercase tracking-normal" style={{ fontSize: 'clamp(1rem, 2.5dvh, 1.5rem)', marginBottom: '0.25rem' }}>
                   {std.title}
                 </h3>
                 {std.status && (
@@ -142,15 +143,15 @@ export default function App() {
                 )}
               </div>
 
-              <div className="space-y-6">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
                 <div className="pl-6 border-l-2 border-gray-200">
-                  <p className="text-gray-600 text-base leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed" style={{ fontSize: 'clamp(0.8rem, 1.8dvh, 1rem)' }}>
                     "{std.workersSay}"
                   </p>
                 </div>
 
-                <div className="pl-6 border-l-4 border-awu-red bg-red-50/20 py-4 pr-6">
-                  <p className="text-gray-900 font-bold text-lg leading-tight">
+                <div className="pl-6 border-l-4 border-awu-red bg-red-50/20 pr-6" style={{ paddingTop: 'clamp(0.5rem, 1dvh, 1rem)', paddingBottom: 'clamp(0.5rem, 1dvh, 1rem)' }}>
+                  <p className="text-gray-900 font-bold leading-tight" style={{ fontSize: 'clamp(0.85rem, 2dvh, 1.125rem)' }}>
                     {std.fightFor}
                   </p>
                 </div>
@@ -162,7 +163,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-
