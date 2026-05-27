@@ -153,7 +153,7 @@ export default function App() {
                 */}
 
                 <div className="flex-1 flex flex-col justify-center pl-6 border-l-4 border-awu-red bg-red-50/20 pr-6" style={{ paddingTop: 'clamp(0.75rem, 1.5dvh, 1.5rem)', paddingBottom: 'clamp(0.75rem, 1.5dvh, 1.5rem)' }}>
-                  <p className="text-gray-900 leading-tight" style={{ fontSize: 'clamp(1.2rem, 3dvh, 1.8rem)' }}>
+                  <p className="text-gray-900 leading-tight" style={{ fontSize: 'clamp(1rem, 2.5dvh, 1.5rem)' }}>
                     {std.fightFor}
                   </p>
                 </div>
