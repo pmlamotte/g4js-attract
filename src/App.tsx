@@ -133,25 +133,27 @@ export default function App() {
               style={{ padding: 'clamp(0.75rem, 2dvh, 1.5rem)' }}
             >
               <div style={{ marginBottom: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
-                <h3 className="font-display font-black text-gray-900 uppercase tracking-normal" style={{ fontSize: 'clamp(1rem, 2.5dvh, 1.5rem)', marginBottom: '0.25rem' }}>
+                <h3 className="font-display font-black text-gray-900 uppercase tracking-normal" style={{ fontSize: 'clamp(1.5rem, 4dvh, 2.5rem)', marginBottom: '0.25rem' }}>
                   {std.title}
                 </h3>
                 {std.status && (
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-awu-red">
+                  <span className="text-[12px] md:text-sm font-bold uppercase tracking-widest text-awu-red">
                     {std.status}
                   </span>
                 )}
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
+              <div className="flex-1 flex flex-col" style={{ gap: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
+                {/* 
                 <div className="pl-6 border-l-2 border-gray-200">
                   <p className="text-gray-600 leading-relaxed" style={{ fontSize: 'clamp(0.8rem, 1.8dvh, 1rem)' }}>
                     "{std.workersSay}"
                   </p>
                 </div>
+                */}
 
-                <div className="pl-6 border-l-4 border-awu-red bg-red-50/20 pr-6" style={{ paddingTop: 'clamp(0.5rem, 1dvh, 1rem)', paddingBottom: 'clamp(0.5rem, 1dvh, 1rem)' }}>
-                  <p className="text-gray-900 font-bold leading-tight" style={{ fontSize: 'clamp(0.85rem, 2dvh, 1.125rem)' }}>
+                <div className="flex-1 flex flex-col justify-center pl-6 border-l-4 border-awu-red bg-red-50/20 pr-6" style={{ paddingTop: 'clamp(0.75rem, 1.5dvh, 1.5rem)', paddingBottom: 'clamp(0.75rem, 1.5dvh, 1.5rem)' }}>
+                  <p className="text-gray-900 leading-tight" style={{ fontSize: 'clamp(1.2rem, 3dvh, 1.8rem)' }}>
                     {std.fightFor}
                   </p>
                 </div>
