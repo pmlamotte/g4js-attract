@@ -84,9 +84,17 @@ export default function App() {
     const countRef = ref(db, 'manualCount');
     const unsubscribe = onValue(countRef, (snapshot) => {
       const data = snapshot.val();
-      if (typeof data === 'number') {
-        setManualCount(data);
+      console.log("Firebase data received:", typeof data, data);
+      
+      if (data !== null) {
+        // Handle both numbers and string numbers ("150")
+        const parsed = typeof data === 'number' ? data : parseInt(data, 10);
+        if (!isNaN(parsed)) {
+          setManualCount(parsed);
+        }
       }
+    }, (error) => {
+      console.error("Firebase permission/read error:", error);
     });
     return () => unsubscribe();
   }, []);
