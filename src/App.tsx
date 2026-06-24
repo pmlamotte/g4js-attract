@@ -116,12 +116,12 @@ export default function App() {
         {/* Enhanced Counter Section */}
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end border-b border-gray-200" style={{ marginBottom: '2dvh', paddingBottom: '1.5dvh' }}>
           <div className="mb-4 md:mb-0 text-center md:text-left">
-            <h1 className="font-display font-black italic text-gray-900 uppercase tracking-normal leading-[1.1]" style={{ fontSize: 'clamp(2rem, 7dvh, 5.5rem)' }}>
+            <h1 className="font-anton font-black italic text-gray-900 uppercase tracking-normal leading-[1.1]" style={{ fontSize: 'clamp(2rem, 7dvh, 5.5rem)' }}>
               Googlers For <br />
               Job Security
             </h1>
           </div>
-          <SignatureCounter value={4065} />
+          <SignatureCounter value={4431} />
         </div>
 
         {/* The Asks Section - Compact 2x2 Grid */}

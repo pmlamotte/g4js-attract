@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,700;0,900;1,900&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,700;0,900;1,900&family=Anton&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Archivo", sans-serif;
+  --font-anton: "Anton", sans-serif;
   --color-awu-red: #e21d31;
 }
