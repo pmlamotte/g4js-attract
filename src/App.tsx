@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Maximize, Minimize } from "lucide-react";
+import { Maximize, Minimize, MonitorPlay, ArrowUp } from "lucide-react";
 
 /**
  * EXACT DATA from Alphabet Workers Union (AWU-CWA) Job Security Asks
@@ -57,6 +57,7 @@ function SignatureCounter({ value }: { value: number }) {
 export default function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [mode, setMode] = useState<'info' | 'cta'>('info');
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -81,9 +82,18 @@ export default function App() {
     };
     document.addEventListener("fullscreenchange", handleFullscreenChange);
 
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === 'm') {
+        setMode(prev => prev === 'info' ? 'cta' : 'info');
+        handleInactivity();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
     return () => {
       events.forEach((name) => document.removeEventListener(name, handleInactivity));
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("keydown", handleKeyDown);
       clearTimeout(timeout);
     };
   }, []);
@@ -100,6 +110,19 @@ export default function App() {
 
   return (
     <div className="bg-gray-50 font-sans text-[#222] flex flex-col antialiased overflow-hidden relative" style={{ height: '100dvh' }}>
+      {/* Mode Toggle Button */}
+      <motion.button
+        initial={{ opacity: 1 }}
+        animate={{ opacity: showControls ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+        onClick={() => setMode(prev => prev === 'info' ? 'cta' : 'info')}
+        className="fixed top-4 right-20 z-50 p-2 bg-white border-2 border-gray-200 rounded-full shadow-lg hover:border-awu-red hover:text-awu-red transition-all cursor-pointer"
+        style={{ pointerEvents: showControls ? "auto" : "none" }}
+        title="Toggle CTA Mode (Press M)"
+      >
+        <MonitorPlay className="w-5 h-5" />
+      </motion.button>
+
       {/* Fullscreen Toggle Button */}
       <motion.button
         initial={{ opacity: 1 }}
@@ -112,55 +135,69 @@ export default function App() {
         {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
       </motion.button>
 
-      <main className="flex-grow max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-center" style={{ paddingTop: '2dvh', paddingBottom: '2dvh' }}>
-        {/* Enhanced Counter Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-end border-b border-gray-200" style={{ marginBottom: '2dvh', paddingBottom: '1.5dvh' }}>
-          <div className="mb-4 md:mb-0 text-center md:text-left">
-            <h1 className="font-anton font-black italic text-gray-900 uppercase tracking-normal leading-[1.1] inline-block scale-x-[1.22] origin-left" style={{ fontSize: 'clamp(2rem, 7dvh, 5.5rem)' }}>
-              Googlers For <br />
-              Job Security
-            </h1>
-          </div>
-          <SignatureCounter value={4431} />
-        </div>
-
-        {/* The Asks Section - Compact 2x2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '1.5dvh' }}>
-          {STANDARDS.map((std) => (
-            <div 
-              key={std.id}
-              className="bg-white border-2 border-gray-200 shadow-sm flex flex-col justify-between"
-              style={{ padding: 'clamp(0.75rem, 2dvh, 1.5rem)' }}
-            >
-              <div style={{ marginBottom: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
-                <h3 className="font-display font-black text-gray-900 uppercase tracking-normal" style={{ fontSize: 'clamp(1.5rem, 4dvh, 2.5rem)', marginBottom: '0.25rem' }}>
-                  {std.title}
-                </h3>
-                {std.status && (
-                  <span className="text-[12px] md:text-sm font-bold uppercase tracking-widest text-awu-red">
-                    {std.status}
-                  </span>
-                )}
+      <main className="flex-grow max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-center" style={{ paddingTop: '2dvh', paddingBottom: '2dvh', width: '100%' }}>
+        {mode === 'info' ? (
+          <>
+            {/* Enhanced Counter Section */}
+            <div className="flex flex-col md:flex-row justify-between items-center md:items-end border-b border-gray-200" style={{ marginBottom: '2dvh', paddingBottom: '1.5dvh' }}>
+              <div className="mb-4 md:mb-0 text-center md:text-left">
+                <h1 className="font-anton font-black italic text-gray-900 uppercase tracking-normal leading-[1.1] inline-block scale-x-[1.22] origin-left" style={{ fontSize: 'clamp(2rem, 7dvh, 5.5rem)' }}>
+                  Googlers For <br />
+                  Job Security
+                </h1>
               </div>
+              <SignatureCounter value={4431} />
+            </div>
 
-              <div className="flex-1 flex flex-col" style={{ gap: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
-                {/* 
-                <div className="pl-6 border-l-2 border-gray-200">
-                  <p className="text-gray-600 leading-relaxed" style={{ fontSize: 'clamp(0.8rem, 1.8dvh, 1rem)' }}>
-                    "{std.workersSay}"
-                  </p>
-                </div>
-                */}
+            {/* The Asks Section - Compact 2x2 Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '1.5dvh' }}>
+              {STANDARDS.map((std) => (
+                <div 
+                  key={std.id}
+                  className="bg-white border-2 border-gray-200 shadow-sm flex flex-col justify-between"
+                  style={{ padding: 'clamp(0.75rem, 2dvh, 1.5rem)' }}
+                >
+                  <div style={{ marginBottom: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
+                    <h3 className="font-display font-black text-gray-900 uppercase tracking-normal" style={{ fontSize: 'clamp(1.5rem, 4dvh, 2.5rem)', marginBottom: '0.25rem' }}>
+                      {std.title}
+                    </h3>
+                    {std.status && (
+                      <span className="text-[12px] md:text-sm font-bold uppercase tracking-widest text-awu-red">
+                        {std.status}
+                      </span>
+                    )}
+                  </div>
 
-                <div className="flex-1 flex flex-col justify-center pl-6 border-l-4 border-awu-red bg-red-50/20 pr-6" style={{ paddingTop: 'clamp(0.75rem, 1.5dvh, 1.5rem)', paddingBottom: 'clamp(0.75rem, 1.5dvh, 1.5rem)' }}>
-                  <p className="text-gray-900 leading-tight" style={{ fontSize: 'clamp(1rem, 2.5dvh, 1.5rem)' }}>
-                    {std.fightFor}
-                  </p>
+                  <div className="flex-1 flex flex-col" style={{ gap: 'clamp(0.5rem, 1.5dvh, 1.5rem)' }}>
+                    <div className="flex-1 flex flex-col justify-center pl-6 border-l-4 border-awu-red bg-red-50/20 pr-6" style={{ paddingTop: 'clamp(0.75rem, 1.5dvh, 1.5rem)', paddingBottom: 'clamp(0.75rem, 1.5dvh, 1.5rem)' }}>
+                      <p className="text-gray-900 leading-tight" style={{ fontSize: 'clamp(1rem, 2.5dvh, 1.5rem)' }}>
+                        {std.fightFor}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="flex-1 flex flex-col items-center justify-center text-center h-full">
+            <div className="mb-12">
+              <div className="font-display font-black text-awu-red tracking-tighter tabular-nums leading-[0.9]" style={{ fontSize: 'clamp(6rem, 25dvh, 20rem)' }}>
+                {(4431).toLocaleString()}
+              </div>
+              <div className="font-display font-black uppercase tracking-tight text-gray-900 mt-2" style={{ fontSize: 'clamp(2rem, 6dvh, 4rem)' }}>
+                Googlers Have Signed
               </div>
             </div>
-          ))}
-        </div>
+            
+            <div className="mt-8 flex flex-col items-center">
+              <h2 className="font-anton font-black text-gray-900 uppercase tracking-normal leading-[1.1] inline-block scale-x-[1.22]" style={{ fontSize: 'clamp(3.5rem, 12dvh, 8rem)' }}>
+                SIGN THE PETITION <br/>
+                <span className="text-awu-red">HERE</span>
+              </h2>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
