@@ -232,8 +232,7 @@ export default function App() {
             
             <div className="mt-8 flex flex-col items-center">
               <h2 className="font-anton font-black text-gray-900 uppercase tracking-normal leading-[1.1] inline-block scale-x-[1.22]" style={{ fontSize: 'clamp(3.5rem, 12dvh, 8rem)' }}>
-                SIGN THE PETITION <br/>
-                <span className="text-awu-red">HERE</span>
+                SIGN THE PETITION
               </h2>
             </div>
           </div>
