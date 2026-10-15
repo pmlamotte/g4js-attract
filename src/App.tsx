@@ -28,11 +28,11 @@ const db = getDatabase(app);
  */
 const STANDARDS = [
   {
-    id: 1,
-    title: "Severance as leave",
-    status: "NEW AS OF 9/9/2025",
-    workersSay: "When workers on visas are hit by surprise layoffs, they often have only a few months to find a new job.",
-    fightFor: "Allow workers to take severance as an extension of paid garden leave instead of a lump-sum.",
+    id: 3,
+    title: "Guaranteed severance",
+    status: null,
+    workersSay: "Since the layoff of 20,000 Googlers in 2023, severance packages have been slowly shrinking.",
+    fightFor: "Every laid off worker must receive a guaranteed minimum severance package equal to the packages offered in January 2023.",
   },
   {
     id: 2,
@@ -42,11 +42,11 @@ const STANDARDS = [
     fightFor: "Voluntary layoffs must be offered before performing involuntary layoffs. Buyouts must offer at least the guaranteed severance package.",
   },
   {
-    id: 3,
-    title: "Guaranteed severance",
-    status: null,
-    workersSay: "Since the layoff of 20,000 Googlers in 2023, severance packages have been slowly shrinking.",
-    fightFor: "Every laid off worker must receive a guaranteed minimum severance package equal to the packages offered in January 2023.",
+    id: 1,
+    title: "Severance as leave",
+    status: "NEW AS OF 9/9/2025",
+    workersSay: "When workers on visas are hit by surprise layoffs, they often have only a few months to find a new job.",
+    fightFor: "Allow workers to take severance as an extension of paid garden leave instead of a lump-sum.",
   },
   {
     id: 4,
