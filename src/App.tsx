@@ -36,10 +36,10 @@ const STANDARDS = [
   },
   {
     id: 2,
-    title: "Voluntary layoffs",
+    title: "Voluntary exits",
     status: "VEPs offered to over 70,000 Googlers",
     workersSay: "When layoffs are necessary, Googlers that are ready to make a career change or retire can volunteer to be laid off.",
-    fightFor: "Voluntary layoffs must be offered before performing involuntary layoffs. Buyouts must offer at least the guaranteed severance package.",
+    fightFor: "Voluntary exits must be offered before performing involuntary layoffs. Buyouts must offer at least the guaranteed severance package.",
   },
   {
     id: 1,
